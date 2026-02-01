@@ -1,0 +1,125 @@
+<!-- rayeedaabir.com starter layout -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rayeed Aabir</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <!-- Navbar -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <h1 class="text-xl font-bold">rayeedaabir.com</h1>
+      <nav class="space-x-4">
+        <a href="#home" class="hover:text-blue-500">Home</a>
+        <a href="#projects" class="hover:text-blue-500">Projects</a>
+        <a href="#blogs" class="hover:text-blue-500">Blogs</a>
+        <a href="#nsu" class="hover:text-blue-500">NSU</a>
+        <a href="#personal" class="hover:text-blue-500">Personal?</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="text-center py-20" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-4">Hi, I’m Rayeed Aabir</h2>
+    <p class="text-lg">A digital garden for all things me — professional, personal, and everything in between.</p>
+  </section>
+
+  <!-- Project Cards Section -->
+  <section id="projects" class="py-16 px-4 bg-white" data-aos="fade-up">
+    <h2 class="text-2xl font-semibold text-center mb-6">Featured Projects</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="p-6 bg-gray-100 rounded-xl shadow-md hover:shadow-xl transition">
+        <h3 class="font-semibold text-lg">Project One</h3>
+        <p class="text-sm">Short description of the project.</p>
+        <a href="https://github.com/rayeedaabir" target="_blank" class="text-blue-500 text-sm mt-2 inline-block">View on GitHub →</a>
+      </div>
+      <!-- Add more cards as needed -->
+    </div>
+  </section>
+
+  <!-- Blog Preview Section -->
+  <section id="blogs" class="py-16 px-4" data-aos="fade-up">
+    <h2 class="text-2xl font-semibold text-center mb-6">Professional Blog</h2>
+    <div id="blog-posts" class="space-y-4 text-center"></div>
+  </section>
+
+  <!-- NSU Section -->
+  <section id="nsu" class="py-16 px-4 bg-white" data-aos="fade-up">
+    <h2 class="text-2xl font-semibold text-center mb-6">NSU Zone</h2>
+    <p class="text-center">Resources, projects, and notes from my journey at NSU.</p>
+    <!-- You can add sublinks/cards here later -->
+  </section>
+
+  <!-- Personal Section Trigger -->
+  <section id="personal" class="py-16 px-4" data-aos="fade-up">
+    <h2 class="text-2xl font-semibold text-center mb-6">Access Personal Blog</h2>
+    <div class="text-center">
+      <button onclick="openQuiz()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Answer Questions</button>
+    </div>
+  </section>
+
+  <!-- Quiz Modal (hidden initially) -->
+  <div id="quizModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded-xl shadow-lg w-96">
+      <h3 class="text-lg font-semibold mb-4">Answer these to unlock personal blog:</h3>
+      <div class="space-y-2">
+        <input type="text" id="q1" placeholder="What’s my favorite colour?" class="w-full border p-2 rounded" />
+        <input type="text" id="q2" placeholder="What city was I born in?" class="w-full border p-2 rounded" />
+        <input type="text" id="q3" placeholder="What handed am I?" class="w-full border p-2 rounded" />
+      </div>
+      <div class="flex justify-between mt-4">
+        <button onclick="checkAnswers()" class="bg-green-600 text-white px-4 py-2 rounded">Submit</button>
+        <button onclick="closeQuiz()" class="text-red-500">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    AOS.init();
+
+    const blogPosts = [
+      { title: "AI and the Future of Work", date: "2025-05-20", content: "Short preview of a professional post..." },
+      { title: "5 Ways to Debug Like a Pro", date: "2025-05-15", content: "Useful debugging habits for every developer..." }
+    ];
+
+    const renderPosts = () => {
+      const container = document.getElementById('blog-posts');
+      blogPosts.forEach(post => {
+        const postDiv = document.createElement('div');
+        postDiv.className = "bg-white p-4 rounded shadow";
+        postDiv.innerHTML = `<h3 class='text-lg font-bold'>${post.title}</h3><p class='text-sm text-gray-500'>${post.date}</p><p>${post.content}</p>`;
+        container.appendChild(postDiv);
+      });
+    };
+
+    renderPosts();
+
+    function openQuiz() {
+      document.getElementById('quizModal').classList.remove('hidden');
+    }
+
+    function closeQuiz() {
+      document.getElementById('quizModal').classList.add('hidden');
+    }
+
+    function checkAnswers() {
+      const a1 = document.getElementById('q1').value.toLowerCase();
+      const a2 = document.getElementById('q2').value.toLowerCase();
+      const a3 = document.getElementById('q3').value.toLowerCase();
+
+      if (a1 === 'black' && a2 === 'dhaka' && a3 === 'left') {
+        alert('Access granted! Redirecting to personal blog...');
+        window.location.href = '/personal-blog.html'; // Create this page later
+      } else {
+        alert('Incorrect answers. Try again.');
+      }
+    }
+  </script>
+</body>
+</html>
