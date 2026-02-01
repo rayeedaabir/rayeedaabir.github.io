@@ -1,1 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💝</text></svg>">
+    <style>
+        body {
+            /* Same shiny Navy/Maroon gradient */
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #560319 100%);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars when button runs away */
+            color: white;
+        }
 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #ff99cc;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            margin: 20px 0;
+            position: relative;
+            min-height: 60px; /* Space for buttons */
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2em;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        #yesBtn {
+            background-color: #4CAF50; /* Green for go! */
+            color: white;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+            z-index: 100; /* Always on top */
+            position: relative;
+        }
+
+        #noBtn {
+            background-color: #ff6b6b;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+            position: relative; /* Changed to absolute via JS later */
+        }
+
+        .gif {
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1em;
+        }
+
+        /* Countdown Timer Styling */
+        #timer {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 10px;
+            display: none; /* Hidden until Yes is clicked */
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Audio Element: Hidden, loops, volume will be set by JS -->
+    <audio id="bgMusic" loop>
+        <source src="music/perfect.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container">
+        <h1 id="mainText">Will you be my valentine? 🤞</h1>
+        <div class="gif">
+            <!-- The Asking GIF (Office Scene) -->
+            <img id="mainGif" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWFmeHBkMDB3cmVkdWFuZHBxZG50cGd0cmMwZTlqY2xqeWV4bHk4ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vDhDcIEmShbUI/giphy.gif" alt="Cute gif" style="max-width: 300px;">
+        </div>
+        <div class="buttons">
+            <button id="yesBtn">Yes!</button>
+            <button id="noBtn">No >:(</button>
+        </div>
+        <div id="timer"></div>
+    </div>
+    
+    <div class="footer">From <span id="from">...</span> to <span id="to">...</span> 💕</div>
+
+    <script>
+        // 1. URL Param Logic
+        const urlParams = new URLSearchParams(window.location.search);
+        const fromParam = urlParams.get('from');
+        const toParam = urlParams.get('to');
+        if (fromParam) document.getElementById('from').textContent = fromParam;
+        if (toParam) document.getElementById('to').textContent = toParam;
+
+        // 2. Elements
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const mainText = document.getElementById('mainText');
+        const mainGif = document.getElementById('mainGif');
+        const container = document.querySelector('.container');
+        const timerDiv = document.getElementById('timer');
+        const audio = document.getElementById('bgMusic');
+
+        // 3. Audio Handling (Try to play on first click anywhere)
+        document.body.addEventListener('click', () => {
+            audio.volume = 0.3; // 30% volume so it's background
+            audio.play().catch(e => console.log("Audio play failed (user interaction needed first)"));
+        }, { once: true });
+
+        // 4. "No" Button Logic
+        const noTexts = [
+            "No >:(", 
+            "Are you sure?", 
+            "Really sure?", 
+            "Think again!", 
+            "Last chance!", 
+            "Surely not?", 
+            "You might regret this!", 
+            "Give it another thought!",
+            "I'm gonna cry...", 
+            "This is breaking my heart ;("
+        ];
+        
+        let clickCount = 0;
+        let yesBtnSize = 1;
+
+        // Function to move button randomly
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        }
+
+        // Logic when hovering or clicking No
+        const noAction = () => {
+            clickCount++;
+            yesBtnSize *= 1.2;
+            yesBtn.style.transform = `scale(${yesBtnSize})`;
+            
+            // Change text randomly
+            const randomText = noTexts[Math.floor(Math.random() * noTexts.length)];
+            noBtn.innerText = randomText;
+
+            // Move the button
+            moveButton();
+
+            // Special logic for 7th time: Hide BEHIND Yes button
+            if (clickCount >= 7) {
+                // Reset position to be relative so it sits next to/behind yes
+                // Or easier: position it exactly where Yes is but z-index -1
+                const yesRect = yesBtn.getBoundingClientRect();
+                noBtn.style.position = 'fixed';
+                noBtn.style.left = yesRect.left + 'px';
+                noBtn.style.top = yesRect.top + 'px';
+                noBtn.style.zIndex = '1'; // Behind Yes (Yes is 100)
+                noBtn.innerText = "Okay fine...";
+            }
+        }
+
+        noBtn.addEventListener('click', noAction);
+        noBtn.addEventListener('mouseover', () => {
+            if(clickCount < 7) moveButton(); // Only run away before it gives up
+        });
+
+        // 5. "Yes" Button Logic
+        yesBtn.addEventListener('click', () => {
+            // Success GIF (Romantic scene)
+            container.innerHTML = `
+                <h1>Yaaay! See you soon! 💖</h1>
+                <div class="gif">
+                    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmxyeTdmZW9udXFjYWo3b3RhZWJlejZqYmZ5YmQ2emFkNnF2bDQ1ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vcA2ydJeOQ4l6FVyZp/giphy.gif" alt="Success gif" style="max-width: 300px;">
+                </div>
+                <div id="countdown-display" style="font-size: 1.2em; margin-top: 15px;"></div>
+            `;
+            
+            // Start Countdown
+            startCountdown();
+            
+            // Ensure music plays if it hasn't already
+            audio.play();
+        });
+
+        // 6. Countdown Timer Logic
+        function startCountdown() {
+            const display = document.getElementById('countdown-display');
+            
+            // Set date to NEXT Valentine's Day
+            const currentYear = new Date().getFullYear();
+            let valDate = new Date(`February 14, ${currentYear} 00:00:00`).getTime();
+            const now = new Date().getTime();
+            
+            // If Feb 14 has passed this year, count to next year
+            if (now > valDate) {
+                valDate = new Date(`February 14, ${currentYear + 1} 00:00:00`).getTime();
+            }
+
+            const timer = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = valDate - now;
+
+                if (distance < 0) {
+                    clearInterval(timer);
+                    display.innerHTML = "It's Date Time! 🌹";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                display.innerHTML = `Time until our date: <br> ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
