@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine's Day</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💝</text></svg>"
+    />
+    <style>
+      :root {
+        --yes-scale: 1;
+      }
+
+      body {
+        /* DEEP GLACIER THEME */
+        background:
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(0, 0, 0, 0) 50%
+          ),
+          linear-gradient(
+            125deg,
+            #020024 0%,
+            #1a0b2e 40%,
+            #460e44 70%,
+            #560319 100%
+          );
+        background-size: 300% 300%;
+        animation: glacierMove 30s ease infinite;
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+        color: white;
+      }
+
+      @keyframes glacierMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        position: relative; /* Essential for containing the No button */
+        width: 90%;
+        max-width: 720px;
+        min-height: 720px; /* Give it some height for the button to run around in */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+
+      h1 {
+        color: #ff99cc;
+        font-size: 2em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin-bottom: 10px;
+        z-index: 2; /* Text stays on top */
+        position: relative;
+      }
+
+      .buttons {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+        height: 60px; /* Reserve space */
+        position: relative; /* Context for initial position */
+      }
+
+      button {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-family: "Comic Sans MS", cursive;
+        font-weight: bold;
+        transition: all 0.3s ease; /* Default transition */
+      }
+
+      /* --- YES BUTTON --- */
+      #yesBtn {
+        background-color: #4caf50;
+        color: white;
+        box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+        z-index: 100;
+        transform: scale(var(--yes-scale));
+        animation: wiggle 2s infinite;
+      }
+
+      @keyframes wiggle {
+        0%,
+        100% {
+          transform: scale(var(--yes-scale)) rotate(0deg);
+        }
+        25% {
+          transform: scale(var(--yes-scale)) rotate(-3deg);
+        }
+        50% {
+          transform: scale(var(--yes-scale)) rotate(3deg);
+        }
+        75% {
+          transform: scale(var(--yes-scale)) rotate(-3deg);
+        }
+      }
+
+      /* --- NO BUTTON --- */
+      #noBtn {
+        background-color: #ff6b6b;
+        color: white;
+        box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+        z-index: 99;
+        /* 
+               Movement Speed: 0.7s 
+               This is smooth enough to glide, but slow enough to click.
+            */
+        transition:
+          top 0.7s ease,
+          left 0.7s ease,
+          transform 0.3s;
+      }
+
+      /* GHOST TRAIL */
+      .trail-element {
+        position: fixed; /* Trail is relative to screen to avoid clipping */
+        background-color: #ff6b6b;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-family: "Comic Sans MS", cursive;
+        font-size: 1.2em;
+        pointer-events: none;
+        opacity: 0.4;
+        z-index: 5;
+        transition:
+          opacity 1s ease,
+          transform 1s ease;
+      }
+
+      .gif {
+        margin: 10px 0;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        max-width: 100%;
+        height: auto;
+        z-index: 2;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 20px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1em;
+      }
+
+      #timer {
+        margin-top: 20px;
+        font-size: 1.3em;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 10px;
+        border-radius: 10px;
+        display: none;
+        z-index: 101;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="bgMusic" loop>
+      <source src="music/perfect.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="container" id="card">
+      <h1 id="mainText">Will you be my valentine? 🤞</h1>
+      <div class="gif">
+        <img
+          id="mainGif"
+          src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWFmeHBkMDB3cmVkdWFuZHBxZG50cGd0cmMwZTlqY2xqeWV4bHk4ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vDhDcIEmShbUI/giphy.gif"
+          alt="Cute gif"
+          style="max-width: 550px"
+        />
+      </div>
+      <div class="buttons">
+        <button id="yesBtn">Yes!</button>
+        <button id="noBtn">No >:(</button>
+      </div>
+      <div id="timer"></div>
+    </div>
+
+    <div class="footer">
+      From <span id="from">...</span> to <span id="to">...</span> 💕
+    </div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const fromParam = urlParams.get("from");
+      const toParam = urlParams.get("to");
+      if (fromParam) document.getElementById("from").textContent = fromParam;
+      if (toParam) document.getElementById("to").textContent = toParam;
+
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+      const container = document.getElementById("card");
+      const audio = document.getElementById("bgMusic");
+
+      // Music starter
+      document.body.addEventListener(
+        "click",
+        () => {
+          audio.volume = 0.3;
+          audio
+            .play()
+            .catch((e) => console.log("Audio waiting for interaction"));
+        },
+        { once: true },
+      );
+
+      const noTexts = [
+        "No >:(",
+        "Are you sure?",
+        "Really sure?",
+        "Think again!",
+        "Surely not that one?",
+        "You sure you wanna press that?",
+        "Give it another thought!",
+        "I'm gonna cry...",
+      ];
+
+      let clickCount = 0;
+      let scaleValue = 1;
+
+      // Trail Logic
+      function createTrail(x, y, text) {
+        const trail = document.createElement("div");
+        trail.className = "trail-element";
+        trail.innerText = text;
+        trail.style.left = x + "px";
+        trail.style.top = y + "px";
+        document.body.appendChild(trail);
+
+        setTimeout(() => {
+          trail.style.opacity = "0";
+          trail.style.transform = "scale(0.5)";
+        }, 50);
+
+        setTimeout(() => {
+          trail.remove();
+        }, 1000);
+      }
+
+      const noAction = () => {
+        clickCount++;
+
+        // 1. Grow Yes Button
+        scaleValue *= 1.15;
+        yesBtn.style.setProperty("--yes-scale", scaleValue);
+
+        // 2. Get current position for trail (Screen coordinates)
+        const btnRect = noBtn.getBoundingClientRect();
+        createTrail(btnRect.left, btnRect.top, noBtn.innerText);
+
+        // 3. Update Text
+        const randomText = noTexts[Math.floor(Math.random() * noTexts.length)];
+        noBtn.innerText = randomText;
+
+        // 4. BOX-CONFINED MOVEMENT
+        // Switch to absolute positioning relative to the .container
+        noBtn.style.position = "absolute";
+
+        // Get boundaries of the white box
+        const containerWidth = 120;
+        const containerHeight = 120;
+        const btnWidth = noBtn.offsetWidth;
+        const btnHeight = noBtn.offsetHeight;
+
+        // Calculate random position INSIDE the box
+        // We subtract btn dimensions so it doesn't clip out the bottom/right
+        const maxLeft = containerWidth - btnWidth - 200; // 20px buffer
+        const maxTop = containerHeight - btnHeight - 200;
+
+        const randomLeft = Math.max(20, Math.random() * maxLeft);
+        const randomTop = Math.max(20, Math.random() * maxTop);
+
+        noBtn.style.left = randomLeft + "px";
+        noBtn.style.top = randomTop + "px";
+
+        // 5. Hide behind Yes button logic (7th click)
+        if (clickCount >= 7) {
+          // Since "Yes" is also inside the container, we can find its relative position
+          // However, "Yes" might be shifted by flexbox centering.
+          // Easiest way: Use screen coordinates to match them up exactly.
+
+          // Reset No button to fixed momentarily to align with Yes, then hide
+          const yesRect = yesBtn.getBoundingClientRect();
+          const containerRect = container.getBoundingClientRect();
+
+          // Calculate position relative to container
+          const relLeft = yesRect.left - containerRect.left;
+          const relTop = yesRect.top - containerRect.top;
+
+          noBtn.style.left = relLeft + "px";
+          noBtn.style.top = relTop + "px";
+          noBtn.style.zIndex = "90"; // Behind Yes (Yes is 100)
+          noBtn.innerText = "Okay fine...";
+          noBtn.style.pointerEvents = "auto";
+        }
+      };
+
+      noBtn.addEventListener("click", noAction);
+
+      // Hover trigger - 0.7s transition makes it playable
+      noBtn.addEventListener("mouseover", () => {
+        if (clickCount < 1) noAction();
+      });
+
+      yesBtn.addEventListener("click", () => {
+        container.innerHTML = `
+                <h1>Yaaay! See you soon! 💞</h1>
+                <div class="gif">
+                    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmxyeTdmZW9udXFjYWo3b3RhZWJlejZqYmZ5YmQ2emFkNnF2bDQ1ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vcA2ydJeOQ4l6FVyZp/giphy.gif" alt="Success gif" style="max-width: 550px;">
+                </div>
+                <div id="countdown-display" style="font-size: 1.2em; margin-top: 27px;"></div>
+            `;
+        startCountdown();
+        audio.play();
+      });
+
+      function startCountdown() {
+        const display = document.getElementById("countdown-display");
+        const currentYear = new Date().getFullYear();
+        let valDate = new Date(
+          `February 14, ${currentYear} 00:00:00`,
+        ).getTime();
+        const now = new Date().getTime();
+        if (now > valDate)
+          valDate = new Date(
+            `February 14, ${currentYear + 1} 00:00:00`,
+          ).getTime();
+
+        const timer = setInterval(() => {
+          const now = new Date().getTime();
+          const distance = valDate - now;
+
+          if (distance < 0) {
+            clearInterval(timer);
+            display.innerHTML = "It's Date Time! 🌹";
+            return;
+          }
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          );
+          const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60),
+          );
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          display.innerHTML = `Time until our date: <br> ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
