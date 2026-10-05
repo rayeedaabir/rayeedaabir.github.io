@@ -3,19 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rayeed Aabir Ahsan: efficient computer vision for edge hardware</title>
+  <title>Rayeed Aabir Ahsan: Efficient Computer Vision for Edge Hardware</title>
   <meta name="description" content="Research Assistant at North South University, Dhaka. Real-time computer vision on CPU-only edge hardware and leakage-free evaluation of medical-imaging models.">
   <link rel="stylesheet" href="style.css">
 
   <!-- Link previews (email, chat apps). Needs img/og.png at 1200x630. -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rayeed Aabir Ahsan">
-  <meta property="og:description" content="I make computer-vision methods run in real time on CPU-only edge hardware, and I build evaluations that show what models actually retain.">
+  <meta property="og:description" content="I make Computer-Vision methods run in real-time on CPU-only edge hardware, and I build benchmark pipelines which show where forgetting occurs in DL models.">
   <meta property="og:image" content="https://rayeedaabir.github.io/img/og.png">
   <meta property="og:url" content="https://rayeedaabir.github.io/">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- TODO: once you have your Google Scholar and ORCID URLs, add them to "sameAs" below. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -26,6 +25,8 @@
     "affiliation": { "@type": "CollegeOrUniversity", "name": "North South University" },
     "sameAs": [
       "https://github.com/rayeedaabir",
+      "https://scholar.google.com/citations?user=gg30_ssAAAAJ",
+      "https://orcid.org/0009-0004-3962-0116",
       "https://www.linkedin.com/in/rayeedaabir/"
     ]
   }
@@ -37,17 +38,15 @@
 
   <header>
     <h1>Rayeed Aabir Ahsan</h1>
-    <p class="lede">I make computer-vision methods run in real time on CPU-only edge hardware, and I build evaluations that show what models actually retain.</p>
+    <p class="lede">I make Computer-Vision methods run in real-time on CPU-only edge hardware, and I build benchmark pipelines which show where forgetting occurs in DL models.</p>
     <p class="status">Research Assistant at North South University, Dhaka. Applying for thesis-based MSc positions in Canada for Fall 2027.</p>
     <nav aria-label="Profile links">
       <ul class="links">
         <li><a href="cv.pdf">CV (PDF)</a></li>
         <li><a href="mailto:rayeed.ahsan@northsouth.edu">Email</a></li>
-        <!-- TODO: replace href="#" with your Google Scholar URL, then delete class="todo" -->
-        <li><a class="todo" href="#">Google Scholar</a></li>
+        <li><a href="https://scholar.google.com/citations?user=gg30_ssAAAAJ">Google Scholar</a></li>
         <li><a href="https://github.com/rayeedaabir">GitHub</a></li>
-        <!-- TODO: replace href="#" with your ORCID URL, then delete class="todo" -->
-        <li><a class="todo" href="#">ORCID</a></li>
+        <li><a href="https://orcid.org/0009-0004-3962-0116">ORCID</a></li>
         <li><a href="https://www.linkedin.com/in/rayeedaabir/">LinkedIn</a></li>
       </ul>
     </nav>
@@ -86,8 +85,8 @@
 
   <section id="research" aria-labelledby="research-h">
     <h2 id="research-h">Research</h2>
-    <p>My work starts from a practical question: will this method still hold up on the hardware and data it will actually meet? I reformulated an infrared–visible video fusion algorithm to run 46–106× faster on a processor with identical output, designed a 155k-parameter decolorizer that runs live on a Raspberry Pi 5, and built a leakage-free benchmark that measures what continual-learning models forget in medical imaging.</p>
-    <p>I am interested in efficient and deployable computer vision, image processing, and evaluation methods that survive contact with real deployment.</p>
+    <p>My work stems from an experimental question: will the theory hold up to the experimental hardware and data? I reformulated an Infrared–Visible (VIS-IR) video fusion algorithm to run 46–106× faster in real-time on a CPU-only processor with identical output, designed a 155k-parameter vision transformer decolorizer which runs in real-time on a Raspberry Pi 5, and built a leakage-free pipeline which benchmarks and measures what continual-learning models forget in medical imaging.</p>
+    <p>I am interested in efficient and deployable Computer Vision, Image Processing, and Evaluation methods that survive contact with real deployment.</p>
   </section>
 
   <section id="work" aria-labelledby="work-h">
@@ -96,16 +95,16 @@
     <!-- Project 1 -->
     <article class="project">
       <img src="img/fusion.webp" loading="lazy" alt="Three panels of a night-time road scene with a bright headlight glare: (A) the fused output from vectorized FCDFusion, (B) the visible camera image washed out by glare, and (C) the infrared image.">
-      <h3>Real-time infrared and visible video fusion on processor-only edge hardware</h3>
-      <p class="venue"><span class="chip">Accepted</span> Cureus Journal of Computer Science (Springer Nature), 2026. First and corresponding author.</p>
-      <p>A fully vectorized reformulation of FCDFusion that gives bit-identical output, plus a lightweight score that exposes the flicker per-frame metrics miss. Nine fusion methods benchmarked under identical CPU-only conditions.</p>
+      <h3>Real-Time Infrared and Visible Video Fusion on Processor-Only Edge Hardware Using Vectorized Direct Mapping</h3>
+      <p class="venue"><span class="chip">Accepted</span> Cureus Journal of Computer Science (Springer Nature), 2026. First and corresponding author, with <a href="https://scholar.google.com/citations?user=L9S6rlUAAAAJ"></a>Prof. Dr. Rashedur M. Rahman</a>.</p>
+      <p>A fully vectorized reformulation of FCDFusion that gives bit-identical output, plus a lightweight temporal score that exposes the flicker per-frame metrics miss. Nine fusion methods benchmarked under identical CPU-only conditions.</p>
       <ul class="facts">
         <li><strong>46×</strong> faster at 1024×1024 and <strong>95–106×</strong> at surveillance resolution, same output</li>
         <li><strong>51.2 FPS</strong> live on a Raspberry Pi 5; every baseline stayed under 10 FPS</li>
       </ul>
       <p class="project-links">
         <!-- TODO: when the Cureus page is online, replace this with <a href="URL">Paper</a> -->
-        <span>Paper <mark class="todo">[CUREUS URL WHEN PUBLISHED]</mark></span>
+        <span>Paper <mark class="todo">[CUREUS URL TO BE ADDED]</mark></span>
         <a href="https://github.com/rayeedaabir/AIRC-Fusion">Code</a>
         <a href="https://doi.org/10.5281/zenodo.20793800">Data and demo videos</a>
       </p>
@@ -114,16 +113,16 @@
     <!-- Project 2 -->
     <article class="project">
       <img src="img/decolor.webp" loading="lazy" alt="A colour-blindness-style test plate with the number 2, shown four ways: (a) the coloured input, (b) a fixed BT.709 grey conversion where the number nearly vanishes, (c) OpenCV decolor, and (d) the proposed method, which keeps the number clearly visible.">
-      <h3>Per-image cue weighting for real-time decolorization on edge devices</h3>
-      <p class="venue"><span class="chip">Manuscript</span> Prepared for IEEE Access, 2026. First author, with Prof. Rashedur M. Rahman.</p>
+      <h3>Per-Image Cue Weighting for Real-Time Decolorization on Edge Devices</h3>
+      <p class="venue"><span class="chip">Manuscript</span> Prepared for IEEE Access, 2026. First author, with <a href="https://scholar.google.com/citations?user=L9S6rlUAAAAJ">Prof. Dr. Rashedur M. Rahman</a>.</p>
       <p>A 155k-parameter vision transformer reads a thumbnail and picks one of 16 learned weightings of four colour cues, keeping the speed of a fixed grey conversion while recovering contrast between colours of equal luminance.</p>
       <ul class="facts">
-        <li>Highest contrast-preservation score of <strong>10 methods</strong> on Color250</li>
-        <li><strong>12 ms</strong> per frame on one CPU thread; <strong>12–26 FPS</strong> live on a Raspberry Pi 5</li>
+        <li>Highest contrast-preservation score of <strong>10 methods</strong> on Color250 dataset</li>
+        <li><strong>12.07ms</strong> per frame on one CPU thread; <strong>12–26 FPS</strong> live on a Raspberry Pi 5</li>
       </ul>
       <p class="project-links">
         <!-- TODO: only if posted on arXiv, replace this with <a href="URL">Preprint</a>; otherwise delete the span -->
-        <span>Preprint <mark class="todo">[ARXIV URL, ONLY IF POSTED]</mark></span>
+        <span>Preprint <mark class="todo">[ARXIV URL, TO BE ADDED]</mark></span>
         <a href="https://github.com/rayeedaabir/decolorization">Code</a>
         <a href="https://doi.org/10.5281/zenodo.22758732">Demo and logs</a>
       </p>
@@ -132,21 +131,22 @@
     <!-- Project 3 -->
     <article class="project">
       <img src="img/continual.webp" loading="lazy" alt="Pipeline diagram: four medical-imaging tasks learned in sequence (APTOS with 5 classes, ODIR with 12, LAG with 12, HAM10000 with 19), with rehearsal checkpoints carried between tasks and a leakage-free split and de-duplication step applied before training.">
-      <h3>A leakage-free benchmark for continual learning in medical imaging</h3>
-      <p class="venue"><span class="chip">Manuscript</span> Prepared for Medical Image Analysis, 2026. First author, with Silvia Ahmed.</p>
+      <h3>A Leakage-free Benchmark for Continual Learning in Medical Imaging: What is Forgotten, Where, and at What Clinical Cost</h3>
+      <p class="venue"><span class="chip">Manuscript</span> Prepared for Medical Image Analysis, 2026. First author, with <a href="https://scholar.google.com/citations?user=T5jK--YAAAAJ">Ms. Silvia Ahmed</a>.</p>
       <p>Four medical tasks learned in sequence, with near-duplicate images removed across all tasks before any training. Twelve architectures, three seeds, and two external test sets that were never used in training.</p>
       <ul class="facts">
         <li>Replay beat naive fine-tuning in <strong>14 of 14</strong> paired runs</li>
         <li>Forgetting tracks how similar the tasks are, not how many classes are added</li>
+        <li>Forgetting hits the deeper layers and rare grades the hardest; the correct diagnosis is usually in top-3</li>
       </ul>
       <p class="project-links">
-        <!-- TODO: only if posted on arXiv, replace this with <a href="URL">Preprint</a>; otherwise delete the span -->
-        <span>Preprint <mark class="todo">[ARXIV URL, ONLY IF POSTED]</mark></span>
-        <a href="https://doi.org/10.5281/zenodo.22905549">Split manifests and code</a>
+        <span>Preprint <mark class="todo">[ARXIV URL, TO BE ADDED]</mark></span>
+        <a href="https://github.com/rayeedaabir/STARL">Code</a>
+        <a href="https://doi.org/10.5281/zenodo.22905549">Split manifests</a>
       </p>
     </article>
 
-    <p class="also">Also: a scoping review of electric-vehicle adoption barriers and policy gaps in South Asia, published in <em>Discover Vehicles</em> (Springer Nature, 2026), where I collected and verified sources, wrote the conclusion and managed the references. <a href="https://doi.org/10.1007/s44465-026-00040-1">Read the paper</a></p>
+    <p class="also"><strong>Also:</strong> A scoping review of electric vehicle adoption barriers and policy gaps in South Asia, published in <em>Discover Vehicles</em> (Springer Nature, 2026), where I collected and verified sources, wrote the conclusion and managed the references. <a href="https://doi.org/10.1007/s44465-026-00040-1">Read the paper</a></p>
   </section>
 
   <section id="publications" aria-labelledby="pubs-h">
@@ -163,16 +163,16 @@
     <h2 id="exp-h">Experience</h2>
     <dl class="rows">
       <div class="row">
-        <dt><mark class="todo">[START MONTH]</mark> 2026 – present</dt>
+        <dt>July 2026 – present</dt>
         <dd>Research Assistant, Department of Electrical and Computer Engineering, North South University <span class="muted">with Prof. Rashedur M. Rahman</span></dd>
       </div>
       <div class="row">
-        <dt>2023 – 2024</dt>
-        <dd>Teacher (part-time), Summerfield International School, Dhaka</dd>
+        <dt>January 2023 – April 2024</dt>
+        <dd>Teacher (Substitute), Summerfield International School, Dhaka</dd>
       </div>
       <div class="row">
         <dt>2022</dt>
-        <dd>Freelance Data Analyst, Connectify Inc., New York (remote)</dd>
+        <dd>Freelance Data Analyst, Connectify Inc., New York (Remote)</dd>
       </div>
     </dl>
   </section>
@@ -194,7 +194,7 @@
 </main>
 
 <footer>
-  <p>Write to me at <a href="mailto:rayeed.ahsan@northsouth.edu">rayeed.ahsan@northsouth.edu</a>. Last updated October 2026.</p>
+  <p>Write to me at <a href="mailto:rayeed.ahsan@northsouth.edu">rayeed.ahsan@northsouth.edu</a>. Last updated 6th October 2026.</p>
 </footer>
 </body>
 </html>
