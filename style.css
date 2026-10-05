@@ -1,0 +1,260 @@
+/* ==========================================================
+   Rayeed Aabir Ahsan: research landing page
+   Tokens follow landing-page-spec.md section 4.
+   ========================================================== */
+
+/* Atkinson Hyperlegible, self-hosted (SIL Open Font License).
+   Put the three .woff2 files in /fonts (see fonts/README.txt).
+   If a file is missing, the browser falls back to the system fonts below. */
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Atkinson Hyperlegible"),
+       url("fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Atkinson Hyperlegible Italic"),
+       url("fonts/atkinson-hyperlegible-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Atkinson Hyperlegible Bold"),
+       url("fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
+}
+
+:root {
+  --paper: #ffffff;
+  --ink: #1d2433;
+  --muted: #586174;
+  --rule: #e2e5ea;
+  --violet: #3b2e8f;
+  --tint: #eeebfa;
+
+  --font: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+  --column: 46rem;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after { box-sizing: inherit; }
+
+html {
+  font-size: 17px;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 1rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  line-height: 1.6;
+}
+
+main, footer {
+  max-width: var(--column);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+main { padding-top: 3rem; }
+
+/* ---------- Typography ---------- */
+
+h1, h2, h3 { color: var(--ink); font-weight: 700; margin: 0; }
+
+h1 { font-size: 2.6rem; line-height: 1.1; }
+
+h2 {
+  font-size: 1.45rem;
+  line-height: 1.25;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+h3 { font-size: 1.15rem; line-height: 1.35; margin: 1rem 0 0.4rem; }
+
+p { margin: 0 0 1rem; max-width: 72ch; }
+
+.small, .caption, .venue { font-size: 0.93rem; color: var(--muted); }
+
+section { margin-top: 3.25rem; }
+
+/* ---------- Links ---------- */
+
+a {
+  color: var(--violet);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+a:hover { text-decoration-thickness: 3px; }
+a:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------- Header ---------- */
+
+.lede { font-size: 1.3rem; line-height: 1.45; margin: 0.9rem 0 0.8rem; max-width: 36ch; }
+.status { color: var(--muted); max-width: 52ch; margin-bottom: 1.1rem; }
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  font-weight: 700;
+}
+
+/* ---------- Signature graphic ---------- */
+
+.swatches { margin: 2rem 0 0; }
+
+.swatch-grid { display: grid; gap: 4px; }
+
+.swatch-row {
+  display: grid;
+  grid-template-columns: 9.5rem repeat(5, 1fr);
+  gap: 4px;
+  align-items: center;
+}
+
+.swatch-label { font-size: 0.9rem; color: var(--muted); line-height: 1.3; padding-right: 0.5rem; }
+
+.swatch { height: 2.6rem; }
+
+.swatches .caption { margin: 0.7rem 0 0; max-width: 66ch; }
+
+/* ---------- Selected work ---------- */
+
+.project {
+  padding-bottom: 1.75rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.project img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  margin-bottom: 1rem;
+  background: var(--paper);
+}
+
+.project h3 { margin-top: 0; }
+
+.venue { margin: 0 0 0.8rem; }
+
+.chip {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--violet);
+  background: var(--tint);
+  padding: 0 0.5rem;
+  border-radius: 3px;
+  margin-right: 0.35rem;
+}
+
+.facts { margin: 0 0 0.9rem; padding-left: 1.2rem; }
+.facts li { margin-bottom: 0.25rem; }
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.also { margin: 0; }
+
+/* ---------- Publications ---------- */
+
+.pubs { margin: 0; padding-left: 1.4rem; }
+.pubs li { margin-bottom: 0.9rem; padding-left: 0.3rem; max-width: 72ch; }
+.pubs .small { display: block; }
+
+/* ---------- Dated rows ---------- */
+
+.rows { margin: 0; }
+.row {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 0 1rem;
+  margin-bottom: 0.9rem;
+}
+.row dt { color: var(--muted); font-size: 0.93rem; padding-top: 0.12rem; }
+.row dd { margin: 0; max-width: 60ch; }
+.row dd .muted { color: var(--muted); }
+
+/* ---------- Footer ---------- */
+
+footer {
+  margin-top: 3.25rem;
+  padding-top: 1.1rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+footer p { margin: 0; }
+
+/* ---------- Placeholders (remove the "todo" class once filled in) ---------- */
+
+.todo {
+  background: #fff176;
+  color: var(--ink);
+  padding: 0 0.25em;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 700;
+}
+a.todo { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+  main { padding-top: 2rem; }
+  h1 { font-size: 2.05rem; }
+  .lede { font-size: 1.12rem; }
+  section { margin-top: 2.5rem; }
+
+  .swatch { height: 2rem; }
+  .swatch-row { grid-template-columns: repeat(5, 1fr); }
+  .swatch-label { grid-column: 1 / -1; padding: 0.5rem 0 0; }
+
+  .row { grid-template-columns: 1fr; margin-bottom: 1.1rem; }
+  .row dt { padding-top: 0; }
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+  .todo { background: none; }
+  a { color: var(--ink); }
+}

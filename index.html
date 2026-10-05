@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rayeed Aabir Ahsan: efficient computer vision for edge hardware</title>
+  <meta name="description" content="Research Assistant at North South University, Dhaka. Real-time computer vision on CPU-only edge hardware and leakage-free evaluation of medical-imaging models.">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Link previews (email, chat apps). Needs img/og.png at 1200x630. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rayeed Aabir Ahsan">
+  <meta property="og:description" content="I make computer-vision methods run in real time on CPU-only edge hardware, and I build evaluations that show what models actually retain.">
+  <meta property="og:image" content="https://rayeedaabir.github.io/img/og.png">
+  <meta property="og:url" content="https://rayeedaabir.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- TODO: once you have your Google Scholar and ORCID URLs, add them to "sameAs" below. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rayeed Aabir Ahsan",
+    "url": "https://rayeedaabir.github.io/",
+    "jobTitle": "Research Assistant",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "North South University" },
+    "sameAs": [
+      "https://github.com/rayeedaabir",
+      "https://www.linkedin.com/in/rayeedaabir/"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+<main>
+
+  <header>
+    <h1>Rayeed Aabir Ahsan</h1>
+    <p class="lede">I make computer-vision methods run in real time on CPU-only edge hardware, and I build evaluations that show what models actually retain.</p>
+    <p class="status">Research Assistant at North South University, Dhaka. Applying for thesis-based MSc positions in Canada for Fall 2027.</p>
+    <nav aria-label="Profile links">
+      <ul class="links">
+        <li><a href="cv.pdf">CV (PDF)</a></li>
+        <li><a href="mailto:rayeed.ahsan@northsouth.edu">Email</a></li>
+        <!-- TODO: replace href="#" with your Google Scholar URL, then delete class="todo" -->
+        <li><a class="todo" href="#">Google Scholar</a></li>
+        <li><a href="https://github.com/rayeedaabir">GitHub</a></li>
+        <!-- TODO: replace href="#" with your ORCID URL, then delete class="todo" -->
+        <li><a class="todo" href="#">ORCID</a></li>
+        <li><a href="https://www.linkedin.com/in/rayeedaabir/">LinkedIn</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Signature graphic: pure HTML/CSS, no image file -->
+  <figure class="swatches">
+    <div class="swatch-grid" role="img" aria-label="Five different colours (red, pink, blue, green, teal) that a fixed BT.709 conversion turns into the same mid-grey, shown above the five distinct greys that one learned per-image weighting produces.">
+      <div class="swatch-row">
+        <div class="swatch-label">Input colours</div>
+        <div class="swatch" style="background:#E05959"></div>
+        <div class="swatch" style="background:#BD5F8C"></div>
+        <div class="swatch" style="background:#5277D7"></div>
+        <div class="swatch" style="background:#3F8E2B"></div>
+        <div class="swatch" style="background:#1C8E8E"></div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch-label">Fixed BT.709 grey</div>
+        <div class="swatch" style="background:#767676"></div>
+        <div class="swatch" style="background:#767676"></div>
+        <div class="swatch" style="background:#767676"></div>
+        <div class="swatch" style="background:#767676"></div>
+        <div class="swatch" style="background:#767676"></div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch-label">Per-image weighting</div>
+        <div class="swatch" style="background:#D6D6D6"></div>
+        <div class="swatch" style="background:#B7B7B7"></div>
+        <div class="swatch" style="background:#555555"></div>
+        <div class="swatch" style="background:#404040"></div>
+        <div class="swatch" style="background:#222222"></div>
+      </div>
+    </div>
+    <figcaption class="caption">Five different colours with the same BT.709 luma. A fixed conversion maps all of them to one grey; one learned weighting from my decolorization codebook keeps them apart. (Illustration with prototype P13; chroma cue omitted.)</figcaption>
+  </figure>
+
+  <section id="research" aria-labelledby="research-h">
+    <h2 id="research-h">Research</h2>
+    <p>My work starts from a practical question: will this method still hold up on the hardware and data it will actually meet? I reformulated an infrared–visible video fusion algorithm to run 46–106× faster on a processor with identical output, designed a 155k-parameter decolorizer that runs live on a Raspberry Pi 5, and built a leakage-free benchmark that measures what continual-learning models forget in medical imaging.</p>
+    <p>I am interested in efficient and deployable computer vision, image processing, and evaluation methods that survive contact with real deployment.</p>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <h2 id="work-h">Selected work</h2>
+
+    <!-- Project 1 -->
+    <article class="project">
+      <img src="img/fusion.webp" loading="lazy" alt="Three panels of a night-time road scene with a bright headlight glare: (A) the fused output from vectorized FCDFusion, (B) the visible camera image washed out by glare, and (C) the infrared image.">
+      <h3>Real-time infrared and visible video fusion on processor-only edge hardware</h3>
+      <p class="venue"><span class="chip">Accepted</span> Cureus Journal of Computer Science (Springer Nature), 2026. First and corresponding author.</p>
+      <p>A fully vectorized reformulation of FCDFusion that gives bit-identical output, plus a lightweight score that exposes the flicker per-frame metrics miss. Nine fusion methods benchmarked under identical CPU-only conditions.</p>
+      <ul class="facts">
+        <li><strong>46×</strong> faster at 1024×1024 and <strong>95–106×</strong> at surveillance resolution, same output</li>
+        <li><strong>51.2 FPS</strong> live on a Raspberry Pi 5; every baseline stayed under 10 FPS</li>
+      </ul>
+      <p class="project-links">
+        <!-- TODO: when the Cureus page is online, replace this with <a href="URL">Paper</a> -->
+        <span>Paper <mark class="todo">[CUREUS URL WHEN PUBLISHED]</mark></span>
+        <a href="https://github.com/rayeedaabir/AIRC-Fusion">Code</a>
+        <a href="https://doi.org/10.5281/zenodo.20793800">Data and demo videos</a>
+      </p>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project">
+      <img src="img/decolor.webp" loading="lazy" alt="A colour-blindness-style test plate with the number 2, shown four ways: (a) the coloured input, (b) a fixed BT.709 grey conversion where the number nearly vanishes, (c) OpenCV decolor, and (d) the proposed method, which keeps the number clearly visible.">
+      <h3>Per-image cue weighting for real-time decolorization on edge devices</h3>
+      <p class="venue"><span class="chip">Manuscript</span> Prepared for IEEE Access, 2026. First author, with Prof. Rashedur M. Rahman.</p>
+      <p>A 155k-parameter vision transformer reads a thumbnail and picks one of 16 learned weightings of four colour cues, keeping the speed of a fixed grey conversion while recovering contrast between colours of equal luminance.</p>
+      <ul class="facts">
+        <li>Highest contrast-preservation score of <strong>10 methods</strong> on Color250</li>
+        <li><strong>12 ms</strong> per frame on one CPU thread; <strong>12–26 FPS</strong> live on a Raspberry Pi 5</li>
+      </ul>
+      <p class="project-links">
+        <!-- TODO: only if posted on arXiv, replace this with <a href="URL">Preprint</a>; otherwise delete the span -->
+        <span>Preprint <mark class="todo">[ARXIV URL, ONLY IF POSTED]</mark></span>
+        <a href="https://github.com/rayeedaabir/decolorization">Code</a>
+        <a href="https://doi.org/10.5281/zenodo.22758732">Demo and logs</a>
+      </p>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="project">
+      <img src="img/continual.webp" loading="lazy" alt="Pipeline diagram: four medical-imaging tasks learned in sequence (APTOS with 5 classes, ODIR with 12, LAG with 12, HAM10000 with 19), with rehearsal checkpoints carried between tasks and a leakage-free split and de-duplication step applied before training.">
+      <h3>A leakage-free benchmark for continual learning in medical imaging</h3>
+      <p class="venue"><span class="chip">Manuscript</span> Prepared for Medical Image Analysis, 2026. First author, with Silvia Ahmed.</p>
+      <p>Four medical tasks learned in sequence, with near-duplicate images removed across all tasks before any training. Twelve architectures, three seeds, and two external test sets that were never used in training.</p>
+      <ul class="facts">
+        <li>Replay beat naive fine-tuning in <strong>14 of 14</strong> paired runs</li>
+        <li>Forgetting tracks how similar the tasks are, not how many classes are added</li>
+      </ul>
+      <p class="project-links">
+        <!-- TODO: only if posted on arXiv, replace this with <a href="URL">Preprint</a>; otherwise delete the span -->
+        <span>Preprint <mark class="todo">[ARXIV URL, ONLY IF POSTED]</mark></span>
+        <a href="https://doi.org/10.5281/zenodo.22905549">Split manifests and code</a>
+      </p>
+    </article>
+
+    <p class="also">Also: a scoping review of electric-vehicle adoption barriers and policy gaps in South Asia, published in <em>Discover Vehicles</em> (Springer Nature, 2026), where I collected and verified sources, wrote the conclusion and managed the references. <a href="https://doi.org/10.1007/s44465-026-00040-1">Read the paper</a></p>
+  </section>
+
+  <section id="publications" aria-labelledby="pubs-h">
+    <h2 id="pubs-h">Publications</h2>
+    <ol class="pubs">
+      <li>M. S. Sadik, M. Samia, R. Islam, <strong>R. A. Ahsan</strong>. A scoping review of electric vehicle adoption barriers and policy gaps in South Asia. <em>Discover Vehicles</em> 2, 36 (2026). <a href="https://doi.org/10.1007/s44465-026-00040-1">doi:10.1007/s44465-026-00040-1</a></li>
+      <li><strong>R. A. Ahsan</strong>, R. Islam, F. R. Hridi, M. C. Prianka, R. M. Rahman. Real-time infrared and visible video fusion on processor-only edge hardware using vectorized direct mapping. <em>Cureus Journal of Computer Science</em>. <span class="small">Accepted, in production.</span></li>
+      <li><strong>R. A. Ahsan</strong>, R. M. Rahman. Per-image cue weighting for real-time decolorization on edge devices. <span class="small">Manuscript prepared for IEEE Access.</span></li>
+      <li><strong>R. A. Ahsan</strong>, R. Islam, J. Mohsin, S. Ahmed. A leakage-free benchmark for continual learning in medical imaging: what is forgotten, where, and at what clinical cost. <span class="small">Manuscript prepared for Medical Image Analysis.</span></li>
+    </ol>
+  </section>
+
+  <section id="experience" aria-labelledby="exp-h">
+    <h2 id="exp-h">Experience</h2>
+    <dl class="rows">
+      <div class="row">
+        <dt><mark class="todo">[START MONTH]</mark> 2026 – present</dt>
+        <dd>Research Assistant, Department of Electrical and Computer Engineering, North South University <span class="muted">with Prof. Rashedur M. Rahman</span></dd>
+      </div>
+      <div class="row">
+        <dt>2023 – 2024</dt>
+        <dd>Teacher (part-time), Summerfield International School, Dhaka</dd>
+      </div>
+      <div class="row">
+        <dt>2022</dt>
+        <dd>Freelance Data Analyst, Connectify Inc., New York (remote)</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section id="education" aria-labelledby="edu-h">
+    <h2 id="edu-h">Education</h2>
+    <dl class="rows">
+      <div class="row">
+        <dt>2022 – 2025</dt>
+        <dd>B.S. in Computer Science and Engineering, North South University <span class="muted">Full academic scholarship (100%)</span></dd>
+      </div>
+      <div class="row">
+        <dt>English</dt>
+        <dd>IELTS Academic 7.5 overall (C1)</dd>
+      </div>
+    </dl>
+  </section>
+
+</main>
+
+<footer>
+  <p>Write to me at <a href="mailto:rayeed.ahsan@northsouth.edu">rayeed.ahsan@northsouth.edu</a>. Last updated October 2026.</p>
+</footer>
+</body>
+</html>
