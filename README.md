@@ -19,6 +19,7 @@ rayeedaabir.github.io/
 │   ├── fusion-qualitative.webp fusion project, nine methods on one frame
 │   ├── decolor.webp            decolorization project, comparison grid
 │   ├── decolor-demo.webp       still shown before the decolorization video plays
+│   ├── decolor-pi-demo.webp    live demo snapshots from Raspberry Pi 5
 │   ├── continual.webp          continual-learning project, pipeline figure
 │   └── og.png                  1200x630 link-preview card (email, LinkedIn, Slack)
 ├── video/
@@ -51,7 +52,7 @@ On GitHub, no software needed:
 
 On your computer: edit the files, then open `index.html` in a browser to preview. No server is needed.
 
-### Update checklist
+### Update checklist (this for me)
 
 When something changes, work down this list:
 
@@ -69,7 +70,7 @@ When something changes, work down this list:
 
 GitHub's web upload accepts files up to 25 MB, and any single file over 100 MB is blocked. Keep each demo video under 25 MB and the whole repository well under 1 GB.
 
-## Licence and credits
+## License and Credits
 
 - **Code** (`index.html` markup and `style.css`) is released under the MIT licence, see [LICENSE](LICENSE).
 - **Content is not covered by that licence.** All text, photos, figures, demo videos and the CV are © 2026 Rayeed Aabir Ahsan, all rights reserved. Figures from published or submitted papers may also be subject to the publisher's terms.
