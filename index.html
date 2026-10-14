@@ -92,7 +92,7 @@
 
   <section id="research" aria-labelledby="research-h">
     <h2 id="research-h">Research</h2>
-    <p>My work stems from an experimental question: will the theory hold up to the experimental hardware and data? I reformulated an Infrared–Visible (VIS-IR) video fusion algorithm to run 46–106× faster in real-time on a CPU-only processor with identical output, designed a 155k-parameter vision transformer decolorizer which runs in real-time on a Raspberry Pi 5, and built a leakage-free pipeline which benchmarks and measures what continual-learning models forget in medical imaging.</p>
+    <p>My work stems from one experimental question: will the theory hold up to the experimental hardware and data? I reformulated an Infrared–Visible (VIS-IR) video fusion algorithm to run 46–106× faster in real-time on a CPU-only processor with identical output, designed a 155k-parameter vision transformer decolorizer which runs in real-time on a Raspberry Pi 5, and built a leakage-free pipeline which benchmarks and measures what continual-learning models forget in medical imaging.</p>
     <p>I am interested in efficient and deployable Computer Vision, Image Processing, and Evaluation methods that survive contact with real deployment.</p>
   </section>
 
@@ -103,7 +103,7 @@
     <article class="project featured">
       <h3>A scoping review of electric vehicle adoption barriers and policy gaps in South Asia</h3>
       <p class="venue"><span class="chip chip-solid">Published</span> <em>Discover Vehicles</em> 2, 36 (Springer Nature), 2026. Co-author.</p>
-      <p>I collected and verified sources, wrote the conclusion and managed the references.</p>
+      <p>I collected and verified sources, wrote the conclusion, helped in proofreading, and managed the references.</p>
       <p class="project-links">
         <a href="https://doi.org/10.1007/s44465-026-00040-1">Read the paper</a>
       </p>
@@ -132,7 +132,7 @@
           <source src="video/fusion-demo.mp4" type="video/mp4">
           <img src="video/fusion-demo.gif" alt="Demo of real-time infrared and visible video fusion running on a Raspberry Pi 5.">
         </video>
-        <figcaption class="caption"><mark class="todo">[VIDEO SLOT: add video/fusion-demo.mp4, check this caption matches the clip, then remove this note]</mark> Demo of the fusion running live on a Raspberry Pi 5.</figcaption>
+        <figcaption class="caption">Demo of the proposed fusion method (Vectorized FCDFusion) running live on a Raspberry Pi 5.</figcaption>
       </figure>
       <p class="project-links">
         <!-- TODO: when the Cureus page is online, replace this with <a href="URL">Paper</a> -->
@@ -148,12 +148,16 @@
         <img src="img/decolor.webp" loading="lazy" alt="Four photographs (a painted mask, citrus fruit, a tiger in tall grass, a boat on a beach), each shown as the colour input and as three grey conversions: BT.709, cv2decolor, and the proposed 4-cue method. The proposed method gives the mask, the grapefruit and the tiger noticeably stronger contrast.">
         <figcaption class="caption">Colour input and three grey conversions: fixed BT.709, cv2decolor, and the proposed 4-cue weighting.</figcaption>
       </figure>
+      <figure class="fig">
+        <img src="img/decolor-pi-demo.webp" loading="lazy" alt="Four photographs (Rayeed holding an image of an Ishihara plate, Rayeed holding two toys, with both input images also showing the learned codebook of 16 prototypes), each shown as the colour input and as three grey conversions: BT.709, cv2decolor, and the proposed 4-cue method. The proposed method gives the input images more contrast.">
+        <figcaption class="caption">Live deployment of the learned codebook and the proposed 4-cue weighting on the Raspberry Pi 5.</figcaption>
+      </figure>
       <h3>Per-Image Cue Weighting for Real-Time Decolorization on Edge Devices</h3>
-      <p class="venue"><span class="chip">Manuscript</span> Prepared for IEEE Access, 2026. First author, with <a href="https://scholar.google.com/citations?user=L9S6rlUAAAAJ">Prof. Dr. Rashedur M. Rahman</a>.</p>
+      <p class="venue"><span class="chip">Manuscript</span> Under review at IEEE Access, 2026. First author, with <a href="https://scholar.google.com/citations?user=L9S6rlUAAAAJ">Prof. Dr. Rashedur M. Rahman</a>.</p>
       <p>A 155k-parameter vision transformer reads a thumbnail and picks one of 16 learned weightings of four colour cues, keeping the speed of a fixed grey conversion while recovering contrast between colours of equal luminance.</p>
       <ul class="facts">
-        <li>Highest contrast-preservation score of <strong>10 methods</strong> on Color250 dataset</li>
-        <li><strong>12.07ms</strong> per frame on one CPU thread; <strong>12–26 FPS</strong> live on a Raspberry Pi 5</li>
+        <li>Highest near iso-luminant contrast score of <strong>10 methods</strong> on Color250 dataset</li>
+        <li><strong>12.72ms</strong> per frame on one CPU thread; <strong>12–26 FPS</strong> live on a Raspberry Pi 5</li>
       </ul>
       <figure class="demo">
         <!-- Demo slot: add video/decolor-demo.mp4 (and optionally video/decolor-demo.gif), then delete the yellow note below.
@@ -162,11 +166,11 @@
           <source src="video/decolor-demo.mp4" type="video/mp4">
           <img src="video/decolor-demo.gif" alt="Live webcam demo on a Raspberry Pi 5: the input, fixed BT.709, the proposed method and cv2decolor side by side, with per-frame timings.">
         </video>
-        <figcaption class="caption"><mark class="todo">[VIDEO SLOT: add video/decolor-demo.mp4, check this caption matches the clip, then remove this note]</mark> Live webcam demo on a Raspberry Pi 5: input, fixed BT.709, the proposed method and cv2decolor side by side.</figcaption>
+        <figcaption class="caption">Live webcam demo on a Raspberry Pi 5: input, fixed BT.709, the proposed method and cv2decolor side by side.</figcaption>
       </figure>
       <p class="project-links">
         <!-- TODO: only if posted on arXiv, replace this with <a href="URL">Preprint</a>; otherwise delete the span -->
-        <span>Preprint <mark class="todo">[ARXIV URL, TO BE ADDED]</mark></span>
+        <span>Preprint <mark class="todo">[IEEE ACCESS URL, TO BE ADDED]</mark></span>
         <a href="https://github.com/rayeedaabir/decolorization">Code</a>
         <a href="https://doi.org/10.5281/zenodo.22758732">Demo and logs</a>
       </p>
@@ -177,11 +181,12 @@
       <img src="img/continual.webp" loading="lazy" alt="Pipeline diagram: four medical-imaging tasks learned in sequence (APTOS with 5 classes, ODIR with 12, LAG with 12, HAM10000 with 19), with rehearsal checkpoints carried between tasks and a leakage-free split and de-duplication step applied before training.">
       <h3>A Leakage-free Benchmark for Continual Learning in Medical Imaging: What is Forgotten, Where, and at What Clinical Cost</h3>
       <p class="venue"><span class="chip">Manuscript</span> Prepared for Medical Image Analysis, 2026. First author, with <a href="https://scholar.google.com/citations?user=T5jK--YAAAAJ">Ms. Silvia Ahmed</a>.</p>
-      <p>Four medical tasks learned in sequence, with near-duplicate images removed across all tasks before any training. Twelve architectures, three seeds, and two external test sets that were never used in training.</p>
+      <p>Four medical tasks learned in sequence, with 2,099 near-duplicate images (9.2%) removed across all tasks before any training. Twelve architectures, three seeds, and two external test sets that were never used in training.</p>
       <ul class="facts">
         <li>Replay beat naive fine-tuning in <strong>14 of 14</strong> paired runs</li>
         <li>Forgetting tracks how similar the tasks are, not how many classes are added</li>
         <li>Forgetting hits the deeper layers and rare grades the hardest; the correct diagnosis is usually in top-3</li>
+        <li>5–11× compression by distillation with no accuracy loss, MobileNetV2 makes it possible for real-time deployment.</li>
       </ul>
       <p class="project-links">
         <span>Preprint <mark class="todo">[ARXIV URL, TO BE ADDED]</mark></span>
@@ -196,7 +201,7 @@
     <ol class="pubs">
       <li>M. S. Sadik, M. Samia, R. Islam, <strong>R. A. Ahsan</strong>. A scoping review of electric vehicle adoption barriers and policy gaps in South Asia. <em>Discover Vehicles</em> 2, 36 (2026). <a href="https://doi.org/10.1007/s44465-026-00040-1">doi:10.1007/s44465-026-00040-1</a></li>
       <li><strong>R. A. Ahsan</strong>, R. Islam, F. R. Hridi, M. C. Prianka, R. M. Rahman. Real-time infrared and visible video fusion on processor-only edge hardware using vectorized direct mapping. <em>Cureus Journal of Computer Science</em>. <span class="small">Accepted, in production.</span></li>
-      <li><strong>R. A. Ahsan</strong>, R. M. Rahman. Per-image cue weighting for real-time decolorization on edge devices. <span class="small">Manuscript prepared for IEEE Access.</span></li>
+      <li><strong>R. A. Ahsan</strong>, R. M. Rahman. Per-image cue weighting for real-time decolorization on edge devices. <span class="small">Manuscript under review at IEEE Access.</span></li>
       <li><strong>R. A. Ahsan</strong>, R. Islam, J. Mohsin, S. Ahmed. A leakage-free benchmark for continual learning in medical imaging: what is forgotten, where, and at what clinical cost. <span class="small">Manuscript prepared for Medical Image Analysis.</span></li>
     </ol>
   </section>
@@ -213,7 +218,7 @@
         <dd>Teacher (Substitute), Summerfield International School, Dhaka</dd>
       </div>
       <div class="row">
-        <dt>2022</dt>
+        <dt>January 2022 – December 2022</dt>
         <dd>Freelance Data Analyst, Connectify Inc., New York (Remote)</dd>
       </div>
     </dl>
@@ -223,7 +228,7 @@
     <h2 id="edu-h">Education</h2>
     <dl class="rows">
       <div class="row">
-        <dt>2022 – 2025</dt>
+        <dt>January 2022 – December 2025</dt>
         <dd>B.S. in Computer Science and Engineering, North South University <span class="muted">Full academic scholarship (100%)</span></dd>
       </div>
       <div class="row">
