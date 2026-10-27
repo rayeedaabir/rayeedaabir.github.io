@@ -175,11 +175,15 @@ a:focus-visible {
 .icon-links svg { width: 2.6rem; height: 2.6rem; display: block; }
 .icon-links a:hover span { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 
-.cv { margin: 0.9rem 0 0; font-weight: 700; text-align: left; }
+.hero-photo { min-width: 0; }
+.cv { margin: 0.6rem 0 0; font-weight: 700; text-align: left; }
+
+/* Tighter gap between the header and the first section below it */
+.hero + section { margin-top: 2.25rem; }
 
 /* ---------- Signature graphic ---------- */
 
-.swatches { margin: 2rem 0 0; }
+.swatches { margin: 0 0 1.1rem; }
 
 .swatch-grid { display: grid; gap: 4px; }
 
@@ -299,6 +303,7 @@ footer {
   color: var(--muted);
 }
 footer p { margin: 0; text-align: left; }
+#visits { white-space: nowrap; }
 
 /* ---------- Placeholders (remove the "todo" class once filled in) ---------- */
 

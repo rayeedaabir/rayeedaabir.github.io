@@ -2,7 +2,7 @@
 
 Source for my personal research page: **https://rayeedaabir.github.io**
 
-It is a single static page (plain HTML and CSS, no JavaScript, no tracking, no build step) hosted with GitHub Pages. Every push to `main` goes live within a few minutes.
+It is a single static page (plain HTML and CSS, no build step) hosted with GitHub Pages. The only JavaScript is a small visit counter (GoatCounter: no cookies, no personal data). Every push to `main` goes live within a few minutes.
 
 ## Folder layout
 
@@ -33,10 +33,24 @@ rayeedaabir.github.io/
 
 Each of `img/`, `video/` and `fonts/` has a `README.txt` with the exact file names and sizes. The page still loads if a file is missing: images show their alt text, and the font falls back to the visitor's default sans-serif.
 
+## Visit statistics (GoatCounter)
+
+GitHub shows traffic for the repository, not for the published site, so the page loads a small GoatCounter script. It counts page views, with no cookies and no personal data, and the footer shows the whole-site total.
+
+One-time setup:
+
+1. Sign up at [goatcounter.com](https://www.goatcounter.com) (free for non-commercial use) and pick a site code.
+2. In GoatCounter, open Settings and tick **Allow adding visitor counts on your website**. Also make sure country collection is ticked so the dashboard can show where visits come from.
+3. In `index.html`, replace `YOUR-CODE` in the `data-goatcounter` line near the bottom with your site code. That is the only place the code is needed.
+4. Open the live site once in each of your own browsers with `#toggle-goatcounter` added to the address, so your own visits are not counted.
+
+Your private dashboard is at `https://rayeedaabir.goatcounter.com`: views per day and week, totals, and a country breakdown. Ad blockers stop the script for some visitors, so the numbers are a minimum. To show the public total only once it is meaningful, raise `MIN_TO_SHOW` in the small script at the bottom of `index.html`.
+
 ## Before the first publish
 
 Anything still unfinished is highlighted in yellow on the page (the `todo` class). To find every one, search the repository for `class="todo"`. Fill each in, then delete `class="todo"` from that element so the highlight disappears. Open spots at the time of writing:
 
+- [x] GoatCounter site code (see above)
 - [ ] Cureus paper link (when the paper is online)
 - [ ] arXiv preprint links (only if the preprints are posted; otherwise delete those lines)
 - [ ] Video notes under the two demos (add the `.mp4` files, then delete the notes)
